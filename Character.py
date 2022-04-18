@@ -1,12 +1,14 @@
 import pygame as pg
+from Resize import Rescale as rs
 
 
 class Character:
     def __init__(self):
-        paths = [f'img/character{i}.png' for i in range(3)]
+        path = 'img/Main Character/Stand.png'
         self.imgFrames = []
-        for path in paths:
-            self.imgFrames.append(pg.image.load(path))
+        stand = pg.image.load(path)
+        stand = pg.transform.scale(stand, (rs.mapCoords(stand.get_width()), rs.mapCoords(stand.get_height())))
+        self.imgFrames.append(stand)
 
         self.frame = 0
 
