@@ -21,12 +21,12 @@ class Room0:
         left, right, up, down = [0, 0, 0, 0]  # temp value
 
         def hasCollision():
-            print(down,">", y,">", up, "and", left,"<", x,"<", right)
+            # print(down,">", y,">", up, "and", left,"<", x,"<", right)
             return down > y > up - character_height and left - character_width < x < right
 
         self.collided = []
         for item in self.asset_positions:
             left, right, up, down = [item["left"], item["right"], item["up"], item["down"]]
             self.collided.append(hasCollision())
-        print(any(self.collided))
+        # print(any(self.collided))
         return any(self.collided)

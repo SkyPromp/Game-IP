@@ -68,7 +68,7 @@ class Character:
         collisions = World(1).getCollisions()
         isMoving = False
 
-        if keys[pg.K_LEFT] and x > collisions["x0"]  and not room.hasCollisions(x - speed, y, self.standheight, self.standwidth):
+        if keys[pg.K_LEFT] and x > collisions["x0"] and not room.hasCollisions(x - speed, y, self.standheight, self.standwidth):
             x -= speed
             self.movement_framecount["left"] += 1
             self.looking_direction_function = self.drawLeft
@@ -81,7 +81,7 @@ class Character:
             x += speed
             self.movement_framecount["right"] += 1
             self.looking_direction_function = self.drawRight
-            isMoving = not isMoving
+            isMoving = True
 
         else:
             self.movement_framecount["right"] = 0
@@ -93,7 +93,7 @@ class Character:
         else:
             self.movement_framecount["down"] = 0
 
-        if keys[pg.K_UP] and y > collisions["y0"]  and not room.hasCollisions(x, y - speed, self.standheight, self.standwidth):
+        if keys[pg.K_UP] and y > collisions["y0"] and not room.hasCollisions(x, y - speed, self.standheight, self.standwidth):
             y -= speed
             self.movement_framecount["up"] += 1
 
@@ -105,8 +105,8 @@ class Character:
             x = 100  # x of exit door
             # y of exit door
 
-        if isMoving:
-            self.looking_direction_function = self.drawNeutral
+        # if isMoving:
+        #     self.looking_direction_function = self.drawNeutral
 
         return x, y
 
