@@ -1,6 +1,7 @@
 import pygame as pg
 from Resize import Rescale as rs
 from World import World
+from Settings import Settings
 import sys
 
 
@@ -115,3 +116,11 @@ class Character:
             if event.type == pg.QUIT:
                 pg.quit()
                 sys.exit()
+            if event.type == pg.KEYDOWN:
+                if event.key == pg.K_j:
+                    volume = round(Settings.getGeneralVolume() - 0.1, 1)
+                    Settings.setGeneralVolume(volume)
+                if event.key == pg.K_k:
+                    volume = round(Settings.getGeneralVolume() + 0.1, 1)
+                    Settings.setGeneralVolume(volume)
+

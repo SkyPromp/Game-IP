@@ -3,5 +3,8 @@
     1280,
     720
   ],
-  "Room_amount": 3
+  "Room_amount": 3,
+  "Music_volume": 1.0,
+  "Sounds_volume": 1.0,
+  "General_volume": 1.0
 }

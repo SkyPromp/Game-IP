@@ -2,6 +2,7 @@ import pygame as pg
 from Character import Character
 from World import World
 from Resize import Rescale as rs
+from Settings import Settings
 import json
 
 
@@ -11,6 +12,9 @@ def settingsHandler():
         data = json.load(json_file)
         rs.setFactor(data['Display_size'][1]/180)
         ROOM_AMOUNT = data['Room_amount']
+        Settings.setGeneralVolume(data['General_volume'])
+        Settings.setMusicVolume(data['Music_volume'])
+        Settings.setMusicVolume(data['Sounds_volume'])
 
 
 def main():
@@ -22,13 +26,16 @@ def main():
     world = World(ROOM_AMOUNT)
     running = True
     coords = (rs.mapCoords(100), rs.mapCoords(100))
+    music = ""
     try:
         pg.mixer.init()
-        pg.mixer.Channel(0).play(pg.mixer.Sound("sounds/achtergrondgeluid.wav"), loops=-1)
+        music = pg.mixer.Sound("sounds/achtergrondgeluid.wav")
+        pg.mixer.Channel(0).play(music, loops=-1)
     except FileNotFoundError:
         pass
 
     while running:
+        music.set_volume(Settings.getMusicVolume())
         SCREEN = world.draw(SCREEN)
         try:
             coords = character.move(coords, 10, (character.standwidth, character.standheight), world, world.rooms[world.roomid])

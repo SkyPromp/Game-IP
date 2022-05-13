@@ -1,6 +1,7 @@
 import pygame as pg
 from Resize import Rescale as rs
 from Room0 import Room0
+from Settings import Settings
 
 
 class World:
@@ -28,7 +29,9 @@ class World:
         self.background = pg.transform.scale(self.background, (rs.mapCoords(self.background.get_width()), rs.mapCoords(self.background.get_height())))
         try:
             pg.mixer.init()
-            pg.mixer.Channel(1).play(pg.mixer.Sound("sounds/deurgeluid.wav"))
+            door_sound = pg.mixer.Sound("sounds/deurgeluid.wav")
+            door_sound.set_volume(Settings.getSoundVolume())
+            pg.mixer.Channel(1).play(door_sound)
         except FileNotFoundError:
             pass
 
