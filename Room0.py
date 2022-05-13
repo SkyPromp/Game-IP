@@ -11,7 +11,7 @@ class Room0:
 
     def drawAll(self, SCREEN):
         for object, pos in zip(self.objects, self.asset_positions):
-            pg.draw.rect(SCREEN, 0, pg.Rect(pos["left"], pos["up"], pos["right"] - pos["left"], pos["down"] - pos["up"]))
+            pg.draw.rect(SCREEN, 0, pg.Rect(pos["left"], pos["up"], pos["right"] - pos["left"], pos["down"] - pos["up"]))  #
 
             # SCREEN.blit(object, leftup)
 

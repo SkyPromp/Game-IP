@@ -22,6 +22,11 @@ def main():
     world = World(ROOM_AMOUNT)
     running = True
     coords = (rs.mapCoords(100), rs.mapCoords(100))
+    try:
+        pg.mixer.init()
+        pg.mixer.Channel(0).play(pg.mixer.Sound("sounds/achtergrondgeluid.wav"), loops=-1)
+    except FileNotFoundError:
+        pass
 
     while running:
         SCREEN = world.draw(SCREEN)
@@ -31,7 +36,7 @@ def main():
             running = False
         character.checkFrameUpdate()
         character.calculateFrame()
-        SCREEN = character.draw(coords, SCREEN)  # TODO: change to draw when drawLeft is implemented
+        SCREEN = character.draw(coords, SCREEN)
         pg.display.update()
         CLOCK.tick(30)
 

@@ -104,8 +104,8 @@ class Character:
             x = 100  # x of exit door
             # y of exit door
 
-        # if isMoving:
-        #     self.looking_direction_function = self.drawNeutral
+        if isMoving:
+            self.looking_direction_function = self.drawNeutral
 
         return x, y
 

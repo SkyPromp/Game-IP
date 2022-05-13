@@ -26,6 +26,11 @@ class World:
         self.roomid += 1
         self.background = self.backgrounds[self.roomid]
         self.background = pg.transform.scale(self.background, (rs.mapCoords(self.background.get_width()), rs.mapCoords(self.background.get_height())))
+        try:
+            pg.mixer.init()
+            pg.mixer.Channel(1).play(pg.mixer.Sound("sounds/deurgeluid.wav"))
+        except FileNotFoundError:
+            pass
 
     def getCollisions(self):
         return self.background_collisions[self.roomid]
