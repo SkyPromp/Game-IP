@@ -14,7 +14,7 @@ def settingsHandler():
         ROOM_AMOUNT = data['Room_amount']
         Settings.setGeneralVolume(data['General_volume'])
         Settings.setMusicVolume(data['Music_volume'])
-        Settings.setMusicVolume(data['Sounds_volume'])
+        Settings.setSoundVolume(data['Sounds_volume'])
 
 
 def main():
