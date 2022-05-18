@@ -15,6 +15,7 @@ def settingsHandler():
         Settings.setGeneralVolume(data['General_volume'])
         Settings.setMusicVolume(data['Music_volume'])
         Settings.setMusicVolume(data['Sounds_volume'])
+        Settings.setRoomAmount(data['Room_amount'])
 
 
 def main():
@@ -23,7 +24,7 @@ def main():
     SCREEN = pg.display.set_mode((rs.mapCoords(320), rs.mapCoords(180)))  # Keep aspect ratio 16:9
     CLOCK = pg.time.Clock()
     character = Character()
-    world = World(ROOM_AMOUNT)
+    world = World()
     running = True
     coords = (rs.mapCoords(100), rs.mapCoords(100))
     music = ""

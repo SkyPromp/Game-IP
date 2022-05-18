@@ -2,16 +2,18 @@ import pygame as pg
 from Resize import Rescale as rs
 
 
-class Room3:
+class Room2:
     def __init__(self):
         assets = ["Deur", "deurtoe", "sleutel"]
-        self.asset_positions = [{"left": rs.mapCoords(120), "right": rs.mapCoords(200), "up": rs.mapCoords(60), "down": rs.mapCoords(100)}]
+        self.asset_positions = [
+            {"left": rs.mapCoords(120), "right": rs.mapCoords(200), "up": rs.mapCoords(60), "down": rs.mapCoords(100)}]
         self.objects = [pg.image.load(f"img/Room assets/{item}.png") for item in assets]
         self.collided = []  # initialization
 
     def drawAll(self, SCREEN):
         for object, pos in zip(self.objects, self.asset_positions):
-            pg.draw.rect(SCREEN, 0, pg.Rect(pos["left"], pos["up"], pos["right"] - pos["left"], pos["down"] - pos["up"]))  #
+            pg.draw.rect(SCREEN, 0,
+                         pg.Rect(pos["left"], pos["up"], pos["right"] - pos["left"], pos["down"] - pos["up"]))  #
 
             # SCREEN.blit(object, leftup)
 

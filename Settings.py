@@ -2,6 +2,7 @@ class Settings:
     GENERAL_VOLUME = 1.0
     MUSIC_VOLUME = 1.0
     SOUND_VOLUME = 1.0
+    ROOM_AMOUNT = 4
 
     @classmethod
     def setGeneralVolume(cls, volume):
@@ -27,3 +28,10 @@ class Settings:
     def getSoundVolume(cls):
         return cls.SOUND_VOLUME * cls.GENERAL_VOLUME
 
+    @classmethod
+    def setRoomAmount(cls, room_amount):
+        cls.ROOM_AMOUNT = room_amount
+
+    @classmethod
+    def getRoomAmount(cls):
+        return cls.ROOM_AMOUNT
