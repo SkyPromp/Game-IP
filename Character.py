@@ -123,4 +123,3 @@ class Character:
                 if event.key == pg.K_k:
                     volume = round(Settings.getGeneralVolume() + 0.1, 1)
                     Settings.setGeneralVolume(volume)
-

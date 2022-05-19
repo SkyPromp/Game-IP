@@ -28,7 +28,7 @@ class World:
         self.background = pg.transform.scale(self.background, (
         rs.mapCoords(self.background.get_width()), rs.mapCoords(self.background.get_height())))
         self.roomid = 0
-        self.rooms = [Room3(), Room1(), Room2(), Room3()]  # add different room objects here
+        self.rooms = [Room0(), Room1(), Room2(), Room3()]
 
     def draw(self, SCREEN: pg.Surface) -> pg.Surface:
         SCREEN.blit(self.background, (0, 0))

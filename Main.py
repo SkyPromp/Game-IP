@@ -3,15 +3,15 @@ from Character import Character
 from World import World
 from Resize import Rescale as rs
 from Settings import Settings
+from Room3 import Room3
 import json
 
 
 def settingsHandler():
-    global ROOM_AMOUNT
     with open('Settings.json') as json_file:
         data = json.load(json_file)
         rs.setFactor(data['Display_size'][1]/180)
-        ROOM_AMOUNT = data['Room_amount']
+        Settings.setRoomAmount(data['Room_amount'])
         Settings.setGeneralVolume(data['General_volume'])
         Settings.setMusicVolume(data['Music_volume'])
         Settings.setMusicVolume(data['Sounds_volume'])
@@ -42,6 +42,10 @@ def main():
             coords = character.move(coords, 10, (character.standwidth, character.standheight), world, world.rooms[world.roomid])
         except IndexError:
             running = False
+
+        # Blit character to screen from Room3
+        SCREEN = Room3.blitChar(SCREEN)
+
         character.checkFrameUpdate()
         character.calculateFrame()
         SCREEN = character.draw(coords, SCREEN)
@@ -50,7 +54,4 @@ def main():
 
 
 if __name__ == '__main__':
-    # Settings constants
-    ROOM_AMOUNT = 0
     main()
-
