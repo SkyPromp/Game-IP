@@ -1,6 +1,7 @@
 import pygame as pg
 from Resize import Rescale as rs
 from random import randint as ri
+import Minigame1
 
 
 class Room1:
@@ -24,7 +25,6 @@ class Room1:
         self.collided = []  # initialization
 
     def drawAll(self, SCREEN):
-        print(self.show_pill, Room1.PILLS_AMOUNT)
         pos = self.asset_positions[0]
         SCREEN.blit(self.objects[Room1.IS_CLOSED], (pos["left"], pos["up"]))
         i = 0
@@ -53,11 +53,11 @@ class Room1:
                 self.show_pill[i] = False
                 self.updatePillAmount()
 
-        # print(any(self.collided))
         return any(self.collided)
 
     @classmethod
     def updatePillAmount(cls):
         cls.PILLS_AMOUNT += 1
-        if cls.PILLS_AMOUNT == cls.TOTAL_PILLS:
-            cls.IS_CLOSED = False  # code that runs when all pills have been collected
+        if cls.PILLS_AMOUNT == cls.TOTAL_PILLS:  # code that runs when all pills have been collected
+            cls.IS_CLOSED = False
+            Minigame1.gameloop()

@@ -42,7 +42,7 @@ class Room3:
         # pg.draw.rect(SCREEN, 0, pg.Rect(pos["left"], pos["up"], pos["right"] - pos["left"], pos["down"] - pos["up"]))
 
         for object, pos in zip(self.objects[2:], self.asset_positions[1:]):
-            pg.draw.rect(SCREEN, 0, pg.Rect(pos["left"], pos["up"], pos["right"] - pos["left"], pos["down"] - pos["up"]))
+            # pg.draw.rect(SCREEN, 0, pg.Rect(pos["left"], pos["up"], pos["right"] - pos["left"], pos["down"] - pos["up"]))
             SCREEN.blit(object, (pos["left"], pos["up"]))
 
         return SCREEN

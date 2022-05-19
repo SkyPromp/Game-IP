@@ -5,6 +5,7 @@ from Resize import Rescale as rs
 from Settings import Settings
 from Room3 import Room3
 import json
+import Minigame0
 
 
 def settingsHandler():
@@ -19,8 +20,9 @@ def settingsHandler():
 
 
 def main():
-    pg.init()
     settingsHandler()
+    # Minigame0.gameloop()
+    pg.init()
     SCREEN = pg.display.set_mode((rs.mapCoords(320), rs.mapCoords(180)))  # Keep aspect ratio 16:9
     CLOCK = pg.time.Clock()
     character = Character()
