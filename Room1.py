@@ -4,7 +4,7 @@ from Resize import Rescale as rs
 
 class Room1:
     def __init__(self):
-        assets = ["Deur", "deurtoe", "sleutel"]
+        assets = ["open_door", "closed_door", "sleutel"]
         self.asset_positions = [
             {"left": rs.mapCoords(120), "right": rs.mapCoords(200), "up": rs.mapCoords(60), "down": rs.mapCoords(100)}]
         self.objects = [pg.image.load(f"img/Room assets/{item}.png") for item in assets]
