@@ -4,7 +4,7 @@
     720
   ],
   "Room_amount": 4,
-  "Music_volume": 0.0,
-  "Sounds_volume": 0.0,
-  "General_volume": 0.0
+  "Music_volume": 1.0,
+  "Sounds_volume": 1.0,
+  "General_volume": 1.0
 }

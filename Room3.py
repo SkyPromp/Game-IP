@@ -2,6 +2,7 @@ import pygame as pg
 from Resize import Rescale as rs
 from random import randint as ri
 from random import shuffle
+from Settings import Settings
 
 
 class Room3:
@@ -70,11 +71,18 @@ class Room3:
 
     @classmethod
     def setChar(cls, char):
-        if char != cls.CHAR:
+        if char != cls.CHAR and char != "":
             cls.CHAR = char
             if cls.PROGRESS + char in cls.KEY:
                 if cls.PROGRESS + char == cls.KEY:
                     print("winner winner chicken dinner")
+                    try:
+                        pg.mixer.init()
+                        door_sound = pg.mixer.Sound("sounds/deurgeluid.wav")
+                        door_sound.set_volume(Settings.getSoundVolume())
+                        pg.mixer.Channel(1).play(door_sound)
+                    except FileNotFoundError:
+                        pass
                     cls.IS_CLOSED = False
                 else:
                     cls.PROGRESS += char

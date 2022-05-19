@@ -22,6 +22,13 @@ def settingsHandler():
 def main():
     settingsHandler()
     # Minigame0.gameloop()
+    try:
+        pg.mixer.init()
+        door_sound = pg.mixer.Sound("sounds/deurgeluid.wav")
+        door_sound.set_volume(Settings.getSoundVolume())
+        pg.mixer.Channel(1).play(door_sound)
+    except FileNotFoundError:
+        pass
     pg.init()
     SCREEN = pg.display.set_mode((rs.mapCoords(320), rs.mapCoords(180)))  # Keep aspect ratio 16:9
     CLOCK = pg.time.Clock()

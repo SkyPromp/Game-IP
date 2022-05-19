@@ -6,7 +6,7 @@ class Room0:
     def __init__(self):
         assets = ["open_door", "counter"]
         self.asset_positions = [
-            {"left": rs.mapCoords(312), "right": rs.mapCoords(323), "up": rs.mapCoords(55), "down": rs.mapCoords(96)},
+            {"left": rs.mapCoords(312-41), "right": rs.mapCoords(323), "up": rs.mapCoords(55-1), "down": rs.mapCoords(96)},
             {"left": rs.mapCoords(139), "right": rs.mapCoords(182), "up": rs.mapCoords(180 - 38 - 9), "down": rs.mapCoords(180 - 9)},
             {"left": rs.mapCoords(129), "right": rs.mapCoords(192), "up": rs.mapCoords(170 - 38 - 9), "down": rs.mapCoords(170 - 9)}]
         self.objects = [pg.transform.scale(pg.image.load(f"img/Room assets/{item}.png"), (rs.mapCoords(pg.image.load(f"img/Room assets/{item}.png").get_width()), rs.mapCoords(pg.image.load(f"img/Room assets/{item}.png").get_height()))) for item in assets]

@@ -100,6 +100,7 @@ def gameloop():
     while running == True:
         timer.tick(fps)
         screen.fill(background)
+
         screen.blit(player, (player_x, player_y))
         blocks = []
         score_text = font.render("Score: " + str(score), True, black)
@@ -125,6 +126,7 @@ def gameloop():
                             else:
                                 game_close = False
                                 player, player_x, player_y, platforms, jump, x_change, y_change, score = standard_values
+                                player_y = 0
                                 gameloop()
 
         for i in range(len(platforms)):

@@ -2,6 +2,7 @@ import pygame as pg
 from Resize import Rescale as rs
 from random import randint as ri
 import Minigame1
+from Settings import Settings
 
 
 class Room1:
@@ -26,6 +27,8 @@ class Room1:
 
     def drawAll(self, SCREEN):
         pos = self.asset_positions[0]
+        if not Room1.IS_CLOSED:
+            self.asset_positions[0] = {"left": rs.mapCoords(312 - 41), "right": rs.mapCoords(323), "up": rs.mapCoords(55 - 1), "down": rs.mapCoords(96)}
         SCREEN.blit(self.objects[Room1.IS_CLOSED], (pos["left"], pos["up"]))
         i = 0
         for object, pos in zip(self.objects[2:], self.asset_positions[2:]):
@@ -61,3 +64,10 @@ class Room1:
         if cls.PILLS_AMOUNT == cls.TOTAL_PILLS:  # code that runs when all pills have been collected
             cls.IS_CLOSED = False
             Minigame1.gameloop()
+            try:
+                pg.mixer.init()
+                door_sound = pg.mixer.Sound("sounds/deurgeluid.wav")
+                door_sound.set_volume(Settings.getSoundVolume())
+                pg.mixer.Channel(1).play(door_sound)
+            except FileNotFoundError:
+                pass
