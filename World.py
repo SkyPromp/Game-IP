@@ -21,7 +21,7 @@ class World:
              "door_y0": rs.mapCoords(55), "door_ym": rs.mapCoords(70)},
 
             {"x0": rs.mapCoords(9), "xm": rs.mapCoords(310), "y0": rs.mapCoords(9), "ym": rs.mapCoords(170),
-             "door_y0": rs.mapCoords(55), "door_ym": rs.mapCoords(70)}
+             "door_y0": rs.mapCoords(55 + 26), "door_ym": rs.mapCoords(70 + 36)}
         ]
         self.background = self.backgrounds[0]
         self.background = pg.transform.scale(self.background, (

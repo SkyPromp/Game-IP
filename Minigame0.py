@@ -44,26 +44,14 @@ class rain_drop(pygame.sprite.Sprite):
 
 pygame.init()
 
-FPS = 60
-FramePerSec = pygame.time.Clock()
 
-RED = (255, 0, 0)
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
-
-SCREEN_WIDTH = 400
-SCREEN_HEIGHT = 600
 
 font_style = pygame.font.SysFont("comicsansms", 20)
 font_small = pygame.font.SysFont("comicsansms", 20)
 
-SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("The_Escape")
 
-try:
-    background = pygame.image.load("img/Minigames/rain drop background.png")
-except FileNotFoundError:
-    pass
+
+
 
 
 
@@ -75,6 +63,19 @@ except FileNotFoundError:
 
 
 def gameloop():
+    try:
+        background = pygame.image.load("img/Minigames/rain drop background.png")
+    except FileNotFoundError:
+        pass
+    FPS = 60
+    FramePerSec = pygame.time.Clock()
+
+    RED = (255, 0, 0)
+    BLACK = (0, 0, 0)
+    WHITE = (255, 255, 255)
+
+    SCREEN_WIDTH = 400
+    SCREEN_HEIGHT = 600
     gamer_over = False
     game_close = False
 
@@ -95,6 +96,8 @@ def gameloop():
     SCORE = 0
     SPEED = 10
     SPEED2 = 10
+    SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    pygame.display.set_caption("The_Escape")
 
     while not gamer_over:
         snelheid += 0.01

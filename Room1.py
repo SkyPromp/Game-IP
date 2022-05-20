@@ -63,7 +63,11 @@ class Room1:
         cls.PILLS_AMOUNT += 1
         if cls.PILLS_AMOUNT == cls.TOTAL_PILLS:  # code that runs when all pills have been collected
             cls.IS_CLOSED = False
-            Minigame1.gameloop()
+            try:
+                Minigame1.gameloop()
+                pass
+            except:
+                pass
             try:
                 pg.mixer.init()
                 door_sound = pg.mixer.Sound("sounds/deurgeluid.wav")

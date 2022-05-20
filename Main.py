@@ -21,7 +21,11 @@ def settingsHandler():
 
 def main():
     settingsHandler()
-    # Minigame0.gameloop()
+    try:
+        Minigame0.gameloop()
+        pass
+    except Exception:
+        pass
     try:
         pg.mixer.init()
         door_sound = pg.mixer.Sound("sounds/deurgeluid.wav")

@@ -21,15 +21,12 @@ class Room3:
 
         self.asset_positions = [{"left": rs.mapCoords(312), "right": rs.mapCoords(323), "up": rs.mapCoords(60 + 21), "down": rs.mapCoords(100 + 21)}]
         upperx = 305//key_len
-        # uppery = 165//key_len
         for i in range(key_len):
             x = ri(upperx - 280//key_len, upperx)
-            # y = ri(uppery - 140//key_len, uppery)
             y = ri(20, 160)
             upperx += 280//key_len
-            # uppery += 140//key_len
-            self.asset_positions.append({"left": rs.mapCoords(20 + x), "right": rs.mapCoords(20 + x+21//2), "up": rs.mapCoords(20 + y),
-                                 "down": rs.mapCoords(20 + y+20//2)})
+            self.asset_positions.append({"left": rs.mapCoords(20 + x), "right": rs.mapCoords(20 + x+21//2), "up": rs.mapCoords(-29 + y),
+                                 "down": rs.mapCoords(-29 + y+20//2)})
 
         self.objects = [pg.transform.scale(pg.image.load(f"img/Room assets/{item}.png"), (rs.mapCoords(pg.image.load(f"img/Room assets/{item}.png").get_width()) // 2, rs.mapCoords(pg.image.load(f"img/Room assets/{item}.png").get_height()) // 2)) for item in assets]
         self.objects[0] = pg.transform.scale(self.objects[0], (self.objects[0].get_width() * 2, self.objects[0].get_height() * 2))
@@ -40,10 +37,8 @@ class Room3:
     def drawAll(self, SCREEN):
         pos = self.asset_positions[0]
         SCREEN.blit(self.objects[Room3.IS_CLOSED], (pos["left"], pos["up"]))
-        # pg.draw.rect(SCREEN, 0, pg.Rect(pos["left"], pos["up"], pos["right"] - pos["left"], pos["down"] - pos["up"]))
 
         for object, pos in zip(self.objects[2:], self.asset_positions[1:]):
-            # pg.draw.rect(SCREEN, 0, pg.Rect(pos["left"], pos["up"], pos["right"] - pos["left"], pos["down"] - pos["up"]))
             SCREEN.blit(object, (pos["left"], pos["up"]))
 
         return SCREEN
@@ -65,17 +60,18 @@ class Room3:
             if hasCollision():
                 char = Room3.KEY[self.ENCRYPT_KEY[i]]
 
-        Room3.setChar(char)
+
+        if char:
+            Room3.setChar(char)
 
         return any(self.collided)
 
     @classmethod
     def setChar(cls, char):
-        if char != cls.CHAR and char != "":
+        if char != cls.CHAR:
             cls.CHAR = char
             if cls.PROGRESS + char in cls.KEY:
                 if cls.PROGRESS + char == cls.KEY:
-                    print("winner winner chicken dinner")
                     try:
                         pg.mixer.init()
                         door_sound = pg.mixer.Sound("sounds/deurgeluid.wav")
@@ -86,9 +82,10 @@ class Room3:
                     cls.IS_CLOSED = False
                 else:
                     cls.PROGRESS += char
+
             else:
                 cls.PROGRESS = ""
-        print(cls.PROGRESS)
+
 
     @classmethod
     def blitChar(cls, SCREEN):

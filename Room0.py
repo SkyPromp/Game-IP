@@ -3,6 +3,7 @@ from Resize import Rescale as rs
 
 
 class Room0:
+    DIALOG = False
     def __init__(self):
         assets = ["open_door", "counter"]
         self.asset_positions = [
@@ -35,8 +36,31 @@ class Room0:
             self.collided.append(hasCollision())
         for item in self.asset_positions[2:]:
             left, right, up, down = [item["left"], item["right"], item["up"], item["down"]]
-            if hasCollision():
+            if hasCollision() and not Room0.DIALOG:
+                self.setDialog()
+                pg.init()
+                SCREEN = pg.display.set_mode((rs.mapCoords(320), rs.mapCoords(180)))
+                CLOCK = pg.time.Clock()
+                try:
+                    with open("Dialog.txt", "r") as f:
+                        for text in f:
+                            for i in range(4):
+                                SCREEN.fill(0)
+                                font = pg.font.Font('freesansbold.ttf', 32).render(text[0:-1], True, (255, 255, 255))
+                                textrect = font.get_rect()
+                                textrect.topleft = (rs.mapCoords(10), rs.mapCoords(10))
+                                SCREEN.blit(font, textrect)
+                                pg.display.update()
+                                CLOCK.tick(1)
+
+                except FileNotFoundError:
+                    pass
+
                 print("bonk")
 
         # print(any(self.collided))
         return any(self.collided)
+
+    @classmethod
+    def setDialog(cls):
+        cls.DIALOG = True
