@@ -65,7 +65,7 @@ class Character:
         width, height = OBJ_SIZE
         keys = pg.key.get_pressed()
         self.eventHandler()
-        collisions = World(1).getCollisions()
+        collisions = World().getCollisions()
         isMoving = False
 
         if keys[pg.K_LEFT] and x > collisions["x0"] and not room.hasCollisions(x - speed, y, self.standheight, self.standwidth):
@@ -123,4 +123,3 @@ class Character:
                 if event.key == pg.K_k:
                     volume = round(Settings.getGeneralVolume() + 0.1, 1)
                     Settings.setGeneralVolume(volume)
-

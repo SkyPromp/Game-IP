@@ -3,27 +3,41 @@ from Character import Character
 from World import World
 from Resize import Rescale as rs
 from Settings import Settings
+from Room3 import Room3
 import json
+import Minigame0
 
 
 def settingsHandler():
-    global ROOM_AMOUNT
     with open('Settings.json') as json_file:
         data = json.load(json_file)
         rs.setFactor(data['Display_size'][1]/180)
-        ROOM_AMOUNT = data['Room_amount']
+        Settings.setRoomAmount(data['Room_amount'])
         Settings.setGeneralVolume(data['General_volume'])
         Settings.setMusicVolume(data['Music_volume'])
-        Settings.setSoundVolume(data['Sounds_volume'])
+        Settings.setMusicVolume(data['Sounds_volume'])
+        Settings.setRoomAmount(data['Room_amount'])
 
 
 def main():
-    pg.init()
     settingsHandler()
+    try:
+        Minigame0.gameloop()
+        pass
+    except Exception:
+        pass
+    try:
+        pg.mixer.init()
+        door_sound = pg.mixer.Sound("sounds/deurgeluid.wav")
+        door_sound.set_volume(Settings.getSoundVolume())
+        pg.mixer.Channel(1).play(door_sound)
+    except FileNotFoundError:
+        pass
+    pg.init()
     SCREEN = pg.display.set_mode((rs.mapCoords(320), rs.mapCoords(180)))  # Keep aspect ratio 16:9
     CLOCK = pg.time.Clock()
     character = Character()
-    world = World(ROOM_AMOUNT)
+    world = World()
     running = True
     coords = (rs.mapCoords(100), rs.mapCoords(100))
     music = ""
@@ -41,6 +55,10 @@ def main():
             coords = character.move(coords, 10, (character.standwidth, character.standheight), world, world.rooms[world.roomid])
         except IndexError:
             running = False
+
+        # Blit character to screen from Room3
+        SCREEN = Room3.blitChar(SCREEN)
+
         character.checkFrameUpdate()
         character.calculateFrame()
         SCREEN = character.draw(coords, SCREEN)
@@ -49,7 +67,4 @@ def main():
 
 
 if __name__ == '__main__':
-    # Settings constants
-    ROOM_AMOUNT = 0
     main()
-
